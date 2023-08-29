@@ -33,7 +33,7 @@ const App = () => {
           <Route path='users'>
             <Route index element={<UsersList />} />
             <Route path='new' element={<UsersForm />} />
-            <Route path='changePassword' element={<UsersForm passwordForm />} />
+            <Route path=':id/changePassword' element={<UsersForm passwordForm />} />
             <Route path=':id' element={<UsersForm editUser />} />
           </Route>
 

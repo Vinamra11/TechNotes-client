@@ -19,7 +19,7 @@ const MenuProps = {
 }
 
 export default function MultipleSelectCheckmarks({ items, label, labelId, id, valueSelected, handleChange }) {
-  // console.log(valueSelected)
+  // console.log(items)
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>

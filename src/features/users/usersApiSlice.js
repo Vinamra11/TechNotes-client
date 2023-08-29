@@ -16,7 +16,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 // console.log("from Validator", response, result)
                 return response.status === 200 && !result.isError
             },
-            keepUnusedDataFor: 5,
+            keepUnusedDataFor: 5,//default 60 change for deployment
             transformResponse: responseData => {
                 // console.log("from Transformer", responseData)
                 const loadedUsers = responseData.map(user => {
@@ -35,11 +35,48 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 } else return [{ type: 'User', id: 'LIST' }]
             }
         }),//end of getUsers
+        addNewUser: builder.mutation({
+            query: initialUserData => ({
+                url: '/users',
+                method: 'POST',
+                body: {
+                    ...initialUserData,
+                }
+            }),
+            invalidatesTags: [
+                { type: 'User', id: "LIST" }
+            ]
+        }),//end of AddNewUSer
+        updateUser: builder.mutation({
+            query: initialUserData => ({
+                url: '/users',
+                method: 'PATCH',
+                body: {
+                    ...initialUserData,
+                }
+            }),//end of UpdateUser
+            invalidatesTags: (result, error, arg) => [
+                { type: 'User', id: arg.id }
+            ]
+        }),
+        deleteUser: builder.mutation({
+            query: ({ id }) => ({
+                url: `/users`,
+                method: 'DELETE',
+                body: { id }
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'User', id: arg.id }
+            ]
+        }),//end of DeleteUSer
     }),
 })
 
 export const {
     useGetUsersQuery,
+    useAddNewUserMutation,
+    useUpdateUserMutation,
+    useDeleteUserMutation,
 } = usersApiSlice
 
 // returns the query result object
