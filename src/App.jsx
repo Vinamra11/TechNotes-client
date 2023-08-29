@@ -11,7 +11,7 @@ import UsersForm from './features/users/UsersForm'
 
 import NotesList from './features/notes/NotesList'
 import NotesForm from './features/notes/NotesForm'
-import Note from './features/notes/Note'
+import NoteDetails from './features/notes/NoteDetails'
 
 const App = () => {
   return (
@@ -28,7 +28,7 @@ const App = () => {
             <Route path=':id' element={<NotesForm editNotes />} />
           </Route>
 
-          <Route path='note/:id' element={<Note />} />
+          <Route path='note/:id' element={<NoteDetails />} />
 
           <Route path='users'>
             <Route index element={<UsersList />} />

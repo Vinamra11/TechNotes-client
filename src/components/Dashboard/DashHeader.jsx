@@ -1,15 +1,27 @@
-import { Link } from "react-router-dom"
-import { Button } from "@mui/material"
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material"
 
 const DashHeader = () => {
-    return (
-        <div>
-            DashHeader-NavBar
-            <Link to='/dash'>Tech Notes</Link>
 
-            <p>User : Status : </p>
-            <Button>Logout</Button>
-        </div>
+    const handleLogout = () => {
+        console.log('logout')
+    }
+
+    return (
+
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        <Typography color='inherit' variant="h6" component={Link} to='/dash' sx={{ textDecoration: 'none' }}>
+                            TechNotes
+                        </Typography>
+                    </Typography>
+                    <Button color="inherit" onClick={handleLogout}>Logout</Button>
+                </Toolbar>
+            </AppBar>
+        </Box>
     )
 }
 

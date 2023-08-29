@@ -13,12 +13,12 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         getUsers: builder.query({
             query: () => 'users',
             validateStatus: (response, result) => {
-                console.log("from Validator", response, result)
+                // console.log("from Validator", response, result)
                 return response.status === 200 && !result.isError
             },
             keepUnusedDataFor: 5,
             transformResponse: responseData => {
-                console.log("from Transformer", responseData)
+                // console.log("from Transformer", responseData)
                 const loadedUsers = responseData.map(user => {
                     user.id = user._id
                     return user
@@ -26,7 +26,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 return usersAdapter.setAll(initialState, loadedUsers)
             },
             providesTags: (result, error, arg) => {
-                console.log("from ProvidesTags", result)
+                // console.log("from ProvidesTags", result)
                 if (result?.ids) {
                     return [
                         { type: 'User', id: 'LIST' },
@@ -34,7 +34,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                     ]
                 } else return [{ type: 'User', id: 'LIST' }]
             }
-        }),
+        }),//end of getUsers
     }),
 })
 

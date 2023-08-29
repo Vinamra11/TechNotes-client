@@ -13,12 +13,14 @@ const initialState = notesAdapter.getInitialState()
 export const notesApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getNotes: builder.query({
-            query: () => '/notes',
+            query: () => 'notes',
             validateStatus: (response, result) => {
+                // console.log("from Validator", response, result)
                 return response.status === 200 && !result.isError
             },
             keepUnusedDataFor: 5,
             transformResponse: responseData => {
+                // console.log("from Transformer", responseData)
                 const loadedNotes = responseData.map(note => {
                     note.id = note._id
                     return note
@@ -26,6 +28,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
                 return notesAdapter.setAll(initialState, loadedNotes)
             },
             providesTags: (result, error, arg) => {
+                // console.log("from ProvidesTags", result)
                 if (result?.ids) {
                     return [
                         { type: 'Note', id: 'LIST' },
@@ -33,7 +36,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
                     ]
                 } else return [{ type: 'Note', id: 'LIST' }]
             }
-        }),
+        }),//end of getNotes
     }),
 })
 
