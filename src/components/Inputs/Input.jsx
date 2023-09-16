@@ -13,6 +13,7 @@ const Input = ({ name, label, handleChange, required, autoFocus, type, half, val
                 fullWidth
                 autoFocus={autoFocus}
                 type={type}
+                autoComplete='off'
             />
 
         </Grid>

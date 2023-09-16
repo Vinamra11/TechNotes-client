@@ -17,7 +17,7 @@ const DashFooter = () => {
     let goHomeButton = null
     if (pathname !== '/dash') {
         goHomeButton = (
-            <Button color='inherit' onClick={onGoHomeClicked}>{<FontAwesomeIcon icon={faHouse} />} Home</Button>
+            <Button color='inherit' onClick={onGoHomeClicked}>{<FontAwesomeIcon icon={faHouse} />}&nbsp;Home</Button>
         )
     }
 
@@ -45,9 +45,9 @@ const DashFooter = () => {
             <Toolbar>
                 {goHomeButton}
                 <div style={{ flexGrow: 1 }}></div>
-                <Typography variant='p'> User: {user.name} </Typography>
-                <Typography variant='p'> Status: {user.active ? "Active " : "Inactive "} </Typography>
-                <Typography variant='p'>{today}</Typography>
+                <Typography variant='p' p> User: {user.name} </Typography>
+                <Typography variant='p' p> Status: {user.active ? "Active " : "Inactive "} </Typography>
+                <Typography variant='p' p>{today}</Typography>
             </Toolbar>
         </AppBar>
     )

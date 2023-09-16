@@ -16,7 +16,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 // console.log("from Validator", response, result)
                 return response.status === 200 && !result.isError
             },
-            keepUnusedDataFor: 5,//default 60 change for deployment
+            //keepUnusedDataFor: 60,//default 60 change for deployment
             transformResponse: responseData => {
                 // console.log("from Transformer", responseData)
                 const loadedUsers = responseData.map(user => {

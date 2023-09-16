@@ -18,7 +18,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
                 // console.log("from Validator", response, result)
                 return response.status === 200 && !result.isError
             },
-            keepUnusedDataFor: 5,
+            //keepUnusedDataFor: 60, //defalts to 60 change for deployment
             transformResponse: responseData => {
                 // console.log("from Transformer", responseData)
                 const loadedNotes = responseData.map(note => {
@@ -52,7 +52,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
         updateNote: builder.mutation({
             query: initialNote => ({
                 url: '/notes',
-                method: 'PATCH',
+                method: 'PATCH', //PUT-> updating the whole item, PATCH-> updating a part of it
                 body: {
                     ...initialNote,
                 }

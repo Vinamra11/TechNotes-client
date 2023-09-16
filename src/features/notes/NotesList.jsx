@@ -13,7 +13,11 @@ const NotesList = () => {
         isSuccess,
         isError,
         error
-    } = useGetNotesQuery()
+    } = useGetNotesQuery(undefined, {//see getUserQuery call on UsersLidt.jsx for ref
+        pollingInterval: 15000,
+        refetchOnFocus: true,
+        refetchOnMountOrArgChange: true
+    })
 
     // console.log(notes, isLoading, isSuccess, isError, error)
 
@@ -25,10 +29,11 @@ const NotesList = () => {
                         <TableCell>Ticket Number</TableCell>
                         <TableCell align="right">Completed</TableCell>
                         <TableCell align="right">Title</TableCell>
-                        <TableCell align="right">Created By</TableCell>
+                        <TableCell align="right">Assigned To</TableCell>
                         <TableCell align="right">Created At</TableCell>
                         <TableCell align="right">Updated At</TableCell>
-                        <TableCell align="right"></TableCell>
+                        <TableCell align="right">Edit</TableCell>
+                        <TableCell align="right">Delete</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

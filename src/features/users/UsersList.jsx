@@ -14,7 +14,11 @@ const UsersList = () => {
         isSuccess,
         isError,
         error
-    } = useGetUsersQuery()
+    } = useGetUsersQuery(undefined, {//options // null or undefined both works for first option
+        pollingInterval: 60000,//60sec -> 60000 mlliseconds
+        refetchOnFocus: true,//changing ang comming back to browser window
+        refetchOnMountOrArgChange: true//remount
+    })
 
     // console.log(users, isLoading, isSuccess, isError, error)
     // {"_id":"64ea88fd299dbb2b264963c9","username":"Admin1","active":true,"roles":["Employee","Manager","Admin"],"__v":0,"id":"64ea88fd299dbb2b264963c9"}
